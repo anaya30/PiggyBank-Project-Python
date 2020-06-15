@@ -1,0 +1,55 @@
+# Define a piggy bank class
+class PiggyBank:
+    
+    # Define the constructor the same
+    def __init__(self):
+        pass
+        
+    # Define a method to add amount into the piggybank
+    def addMoney(self, amount):
+        global saving
+        saving += int(amount)
+        return "\nAmount " + amount + " added. Current Balance is : " + str(saving)
+    
+    # Define a method to withdraw amount into the piggybank
+    def withdrawMoney(self, amount):
+        global saving
+        if int(amount) > saving:
+            return "Insufficent Funds"
+        else:
+            saving -= int(amount)
+            return "\nAmount " + amount + " withdrawn. Current Balance is : " + str(saving)
+        
+    # Define a method to check amount into the piggybank
+    def checkMoney(self):
+        global saving
+        return  "\nCurrent Balance is : " + str(saving)
+        
+# MAin section starts here
+saving = 0
+while True:
+    # Check whether the user wants to start or end
+    user_input = input("Start or End : ").strip(" ").lower()
+    if user_input == "start":
+        # Create an object of the class
+        pgy_bnk = PiggyBank()
+        while True:
+            oper_input = input("Add , Withdraw or Check : ").strip(" ").lower()
+            if oper_input == "add":
+                amount = input("Please Enter the amount : ").strip(" ")
+                print (pgy_bnk.addMoney(amount), "\n")
+                break
+            elif oper_input == "withdraw": 
+                amount = input("Please Enter the amount : ").strip(" ")
+                print (pgy_bnk.withdrawMoney(amount), "\n")
+                break
+            elif oper_input == "check": 
+                print (pgy_bnk.checkMoney() , "\n")
+                break
+            else:
+                continue
+    elif user_input == "end":
+        print ("Thank You. Visit us soon!!!")
+        break
+    else:
+        continue
